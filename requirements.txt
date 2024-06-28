@@ -1,0 +1,8 @@
+Flask
+Flask-RESTful
+Flask-SQLAlchemy
+requests
+warcio
+pandas
+gunicorn
+psycopg2-binary
