@@ -39,6 +39,14 @@ class FindEmails(Resource):
                 db.session.add(new_email)
                 db.session.commit()
                 response_emails.append({'domain': domain, 'email': email, 'valid': is_valid})
+        
+        # Write results to a new CSV file
+        output_csv_filename = 'found_emails.csv'
+        with open(output_csv_filename, mode='w', newline='') as output_file:
+            csv_writer = csv.writer(output_file)
+            csv_writer.writerow(['Domain', 'Email', 'Valid'])  # Write header
+            for entry in response_emails:
+                csv_writer.writerow([entry['domain'], entry['email'], entry['valid']])
 
         return jsonify({'emails': response_emails})
 
